@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2625A91F1A0A2E5D00E8278E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2625A91E1A0A2E5D00E8278E /* OpenGL.framework */; };
+		2625A9211A0A2E6D00E8278E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2625A9201A0A2E6D00E8278E /* OpenAL.framework */; };
+		2625A9261A0A2F5400E8278E /* libIL.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2625A9251A0A2F5400E8278E /* libIL.1.dylib */; };
 		262BBD981A0A28C900A75D6C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 262BBD971A0A28C900A75D6C /* main.cpp */; };
 		262BBDA91A0A28C900A75D6C /* OPENGLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 262BBDA81A0A28C900A75D6C /* OPENGLTests.m */; };
+		267BD6861A0A3F140022AE99 /* libassimp.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 267BD6851A0A3F140022AE99 /* libassimp.3.0.0.dylib */; };
+		26F0D0B91A0A30AB001D120F /* libglfw.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2625A9221A0A2EBA00E8278E /* libglfw.3.1.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,12 +27,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2625A91E1A0A2E5D00E8278E /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		2625A9201A0A2E6D00E8278E /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		2625A9221A0A2EBA00E8278E /* libglfw.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.1.dylib; path = /opt/local/lib/libglfw.3.1.dylib; sourceTree = "<absolute>"; };
+		2625A9251A0A2F5400E8278E /* libIL.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIL.1.dylib; path = ../../../../../../opt/local/lib/libIL.1.dylib; sourceTree = "<group>"; };
 		262BBD8F1A0A28C900A75D6C /* OPENGL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OPENGL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		262BBD931A0A28C900A75D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		262BBD971A0A28C900A75D6C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		262BBDA21A0A28C900A75D6C /* OPENGLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPENGLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		262BBDA71A0A28C900A75D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		262BBDA81A0A28C900A75D6C /* OPENGLTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPENGLTests.m; sourceTree = "<group>"; };
+		267BD6851A0A3F140022AE99 /* libassimp.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.0.0.dylib; path = ../../../../../../opt/local/lib/libassimp.3.0.0.dylib; sourceTree = "<group>"; };
+		26F0D0BB1A0A3C86001D120F /* glfw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
+		26F0D0BC1A0A3C86001D120F /* glfw3native.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3native.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +47,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				267BD6861A0A3F140022AE99 /* libassimp.3.0.0.dylib in Frameworks */,
+				26F0D0B91A0A30AB001D120F /* libglfw.3.1.dylib in Frameworks */,
+				2625A9261A0A2F5400E8278E /* libIL.1.dylib in Frameworks */,
+				2625A9211A0A2E6D00E8278E /* OpenAL.framework in Frameworks */,
+				2625A91F1A0A2E5D00E8278E /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,9 +68,15 @@
 		262BBD861A0A28C900A75D6C = {
 			isa = PBXGroup;
 			children = (
+				267BD6851A0A3F140022AE99 /* libassimp.3.0.0.dylib */,
+				2625A9251A0A2F5400E8278E /* libIL.1.dylib */,
+				2625A9221A0A2EBA00E8278E /* libglfw.3.1.dylib */,
+				2625A9201A0A2E6D00E8278E /* OpenAL.framework */,
+				2625A91E1A0A2E5D00E8278E /* OpenGL.framework */,
 				262BBD911A0A28C900A75D6C /* OPENGL */,
 				262BBDA51A0A28C900A75D6C /* OPENGLTests */,
 				262BBD901A0A28C900A75D6C /* Products */,
+				26F0D0BA1A0A3C86001D120F /* GLFW */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,6 +121,16 @@
 				262BBDA71A0A28C900A75D6C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		26F0D0BA1A0A3C86001D120F /* GLFW */ = {
+			isa = PBXGroup;
+			children = (
+				26F0D0BB1A0A3C86001D120F /* glfw3.h */,
+				26F0D0BC1A0A3C86001D120F /* glfw3native.h */,
+			);
+			name = GLFW;
+			path = ../../../../../../opt/local/include/GLFW;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,7 +341,10 @@
 				);
 				INFOPLIST_FILE = OPENGL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = opt/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					opt/local/lib,
+					/opt/local/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -325,7 +361,10 @@
 				);
 				INFOPLIST_FILE = OPENGL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = opt/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					opt/local/lib,
+					/opt/local/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -385,6 +424,7 @@
 				262BBDAE1A0A28C900A75D6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		262BBDAF1A0A28C900A75D6C /* Build configuration list for PBXNativeTarget "OPENGLTests" */ = {
 			isa = XCConfigurationList;
@@ -393,6 +433,7 @@
 				262BBDB11A0A28C900A75D6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
