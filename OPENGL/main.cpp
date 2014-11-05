@@ -5,6 +5,8 @@
 //  Created by Bilbo Baggins on 11/5/14.
 //  Copyright (c) 2014 Steven Thacker. All rights reserved.
 //
+// From Tutorial: https://www.youtube.com/watch?v=kCSZ0ycWR5g&list=UUgmBi6eG4I1mykk-Qb1HuXQ
+//
 
 #define GLFW_INCLUDE_GLCOREARB
 #include <iostream>
@@ -31,8 +33,15 @@ int main(int argc, const char * argv[])
     
     glfwMakeContextCurrent(window);
     
+    glClearColor(0.0, 1.0, 0.0, 1.0);
+    
     while (!glfwWindowShouldClose(window))
     {
+        GLint windowWidth, windowHeight;
+        glfwGetWindowSize(window, &windowWidth, &windowHeight);
+        glViewport(0,0,windowWidth,windowHeight);
+        glClear(GL_COLOR_BUFFER_BIT);
+        
         glfwPollEvents();
         glfwSwapBuffers(window);
     }
