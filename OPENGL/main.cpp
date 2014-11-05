@@ -20,8 +20,22 @@ int main(int argc, const char * argv[])
         glfwTerminate();
         return 1;
     }
+
+    GLFWwindow* window = glfwCreateWindow(640, 360, "Modern OpenGL", NULL, NULL);
+    if (window == NULL)
+    {
+        std::cout << "Window failed to create" << std::endl;
+        glfwTerminate();
+        return -1;
+    }
     
+    glfwMakeContextCurrent(window);
     
+    while (!glfwWindowShouldClose(window))
+    {
+        glfwPollEvents();
+        glfwSwapBuffers(window);
+    }
     
     glfwTerminate();
     return 0;
