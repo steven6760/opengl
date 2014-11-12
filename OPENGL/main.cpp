@@ -42,21 +42,7 @@ int main(int argc, const char * argv[])
     glfwMakeContextCurrent(window);
     std::cout << glGetString(GL_VERSION) << std::endl;
     
-    GLuint myVBO;
-    glGenBuffers(1, &myVBO);
-    glBindBuffer(GL_ARRAY_BUFFER, myVBO);
-    
-    GLfloat bufferData[] =
-    {
-        +0.0, +0.5,
-        -0.5, -0.5,
-        +0.5, -0.5,
-    };
-    
-    glBufferData(GL_ARRAY_BUFFER, sizeof(bufferData), bufferData, GL_STATIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, NULL);
-    
-    glClearColor(0.0, 1.0, 0.0, 0.0);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
     
     GLuint vertexShader = ShaderUtils::createShaderFromFile("myShaderProgram.vs", GL_VERTEX_SHADER);
     GLuint fragmentShader = ShaderUtils::createShaderFromFile("myShaderProgram.fs", GL_FRAGMENT_SHADER);
@@ -64,6 +50,8 @@ int main(int argc, const char * argv[])
     GLuint shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
+    
+    glBindFragDataLocation(shaderProgram, 0, "fragData");
     
     glLinkProgram(shaderProgram);
     GLint linkStatus;
@@ -83,6 +71,32 @@ int main(int argc, const char * argv[])
     
     glUseProgram(shaderProgram);
     
+    GLuint myVBO;
+    glGenBuffers(1, &myVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, myVBO);
+    
+    GLfloat bufferData[] =
+    {
+        +0.0, +0.5,
+        -0.5, -0.5,
+        +0.5, -0.5,
+    };
+    
+    glBufferData(GL_ARRAY_BUFFER, sizeof(bufferData), bufferData, GL_STATIC_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, NULL);
+    
+    GLuint myVAO;
+    glGenVertexArrays(1, &myVAO);
+    glBindVertexArray(myVAO);
+    
+    GLint positionLoc = glGetAttribLocation(shaderProgram, "position");
+    
+    glEnableVertexAttribArray(positionLoc);
+    glBindBuffer(GL_ARRAY_BUFFER, myVBO);
+    glVertexAttribPointer(positionLoc, 2, GL_FLOAT, GL_FALSE, 2*sizeof(GLfloat), 0);
+    glBindBuffer(GL_ARRAY_BUFFER, NULL);
+    glBindVertexArray(NULL);
+    
     while (!glfwWindowShouldClose(window))
     {
         GLint windowWidth, windowHeight;
@@ -90,11 +104,16 @@ int main(int argc, const char * argv[])
         glViewport(0,0,windowWidth,windowHeight);
         glClear(GL_COLOR_BUFFER_BIT);
         
+        glBindVertexArray(myVAO);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glBindVertexArray(NULL);
+        
         glfwPollEvents();
         glfwSwapBuffers(window);
     }
     
     glDeleteBuffers(1,&myVBO);
+    glDeleteVertexArrays(1, &myVAO);
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
     glDeleteProgram(shaderProgram);
