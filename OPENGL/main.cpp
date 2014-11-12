@@ -7,6 +7,8 @@
 //
 // From Tutorial: https://www.youtube.com/watch?v=kCSZ0ycWR5g&list=UUgmBi6eG4I1mykk-Qb1HuXQ
 //
+// Macintosh HD ▸ Users ▸ BagginsHomeFolder ▸ Documents ▸ Abstract Desktop ▸ Xcode Pro Folder ▸ OPENGL
+//
 
 #define GLFW_INCLUDE_GLCOREARB
 #include <iostream>
@@ -55,7 +57,7 @@ int main(int argc, const char * argv[])
     glBufferData(GL_ARRAY_BUFFER, sizeof(bufferData), bufferData, GL_STATIC_DRAW);
     glBindBuffer(GL_ARRAY_BUFFER, NULL);
     
-    glClearColor(0.0, 0.0, 0.0, 1.0);
+    glClearColor(0.0, 1.0, 0.0, 0.0);
     
     while (!glfwWindowShouldClose(window))
     {
