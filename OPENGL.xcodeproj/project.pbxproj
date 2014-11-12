@@ -13,8 +13,9 @@
 		262BBD981A0A28C900A75D6C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 262BBD971A0A28C900A75D6C /* main.cpp */; };
 		262BBDA91A0A28C900A75D6C /* OPENGLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 262BBDA81A0A28C900A75D6C /* OPENGLTests.m */; };
 		267BD6861A0A3F140022AE99 /* libassimp.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 267BD6851A0A3F140022AE99 /* libassimp.3.0.0.dylib */; };
-		269F9CD81A0AE64D00A44CB9 /* vert_shaders.vs in Resources */ = {isa = PBXBuildFile; fileRef = 269F9CD71A0AE64D00A44CB9 /* vert_shaders.vs */; };
-		269F9CDA1A0AE69600A44CB9 /* frag_shaders.fs in Resources */ = {isa = PBXBuildFile; fileRef = 269F9CD91A0AE69600A44CB9 /* frag_shaders.fs */; };
+		269F9CD81A0AE64D00A44CB9 /* myShaderProgram.vs in Resources */ = {isa = PBXBuildFile; fileRef = 269F9CD71A0AE64D00A44CB9 /* myShaderProgram.vs */; };
+		269F9CDA1A0AE69600A44CB9 /* myShaderProgram.fs in Resources */ = {isa = PBXBuildFile; fileRef = 269F9CD91A0AE69600A44CB9 /* myShaderProgram.fs */; };
+		269F9CDF1A132F3A00A44CB9 /* ShaderUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 269F9CDD1A132F3A00A44CB9 /* ShaderUtils.cpp */; };
 		26F0D0B91A0A30AB001D120F /* libglfw.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2625A9221A0A2EBA00E8278E /* libglfw.3.1.dylib */; };
 /* End PBXBuildFile section */
 
@@ -40,8 +41,10 @@
 		262BBDA71A0A28C900A75D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		262BBDA81A0A28C900A75D6C /* OPENGLTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPENGLTests.m; sourceTree = "<group>"; };
 		267BD6851A0A3F140022AE99 /* libassimp.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.0.0.dylib; path = ../../../../../../opt/local/lib/libassimp.3.0.0.dylib; sourceTree = "<group>"; };
-		269F9CD71A0AE64D00A44CB9 /* vert_shaders.vs */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = vert_shaders.vs; sourceTree = "<group>"; };
-		269F9CD91A0AE69600A44CB9 /* frag_shaders.fs */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = frag_shaders.fs; sourceTree = "<group>"; };
+		269F9CD71A0AE64D00A44CB9 /* myShaderProgram.vs */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = myShaderProgram.vs; sourceTree = "<group>"; };
+		269F9CD91A0AE69600A44CB9 /* myShaderProgram.fs */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = myShaderProgram.fs; sourceTree = "<group>"; };
+		269F9CDD1A132F3A00A44CB9 /* ShaderUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderUtils.cpp; sourceTree = "<group>"; };
+		269F9CDE1A132F3A00A44CB9 /* ShaderUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtils.h; sourceTree = "<group>"; };
 		26F0D0BB1A0A3C86001D120F /* glfw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
 		26F0D0BC1A0A3C86001D120F /* glfw3native.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3native.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +110,8 @@
 			children = (
 				262BBD931A0A28C900A75D6C /* Info.plist */,
 				262BBD971A0A28C900A75D6C /* main.cpp */,
+				269F9CDD1A132F3A00A44CB9 /* ShaderUtils.cpp */,
+				269F9CDE1A132F3A00A44CB9 /* ShaderUtils.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -139,8 +144,8 @@
 		269F9CD61A0AE60800A44CB9 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				269F9CD71A0AE64D00A44CB9 /* vert_shaders.vs */,
-				269F9CD91A0AE69600A44CB9 /* frag_shaders.fs */,
+				269F9CD71A0AE64D00A44CB9 /* myShaderProgram.vs */,
+				269F9CD91A0AE69600A44CB9 /* myShaderProgram.fs */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -235,8 +240,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				269F9CD81A0AE64D00A44CB9 /* vert_shaders.vs in Resources */,
-				269F9CDA1A0AE69600A44CB9 /* frag_shaders.fs in Resources */,
+				269F9CD81A0AE64D00A44CB9 /* myShaderProgram.vs in Resources */,
+				269F9CDA1A0AE69600A44CB9 /* myShaderProgram.fs in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				269F9CDF1A132F3A00A44CB9 /* ShaderUtils.cpp in Sources */,
 				262BBD981A0A28C900A75D6C /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

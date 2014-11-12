@@ -14,6 +14,7 @@
 #include <iostream>
 #include </opt/local/include/GLFW/glfw3.h>
 #include </opt/local/include/glm/glm.hpp>
+#include "ShaderUtils.h"
 
 int main(int argc, const char * argv[])
 {
@@ -25,8 +26,6 @@ int main(int argc, const char * argv[])
         return 1;
     }
     
-    
-    // NOT WORKING
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -58,6 +57,12 @@ int main(int argc, const char * argv[])
     glBindBuffer(GL_ARRAY_BUFFER, NULL);
     
     glClearColor(0.0, 1.0, 0.0, 0.0);
+    
+    GLint vertexShader = ShaderUtils::createShaderFromFile("myShaderProgram.vs", GL_VERTEX_SHADER);
+    GLint fragmentShader = ShaderUtils::createShaderFromFile("myShaderProgram.fs", GL_FRAGMENT_SHADER);
+    
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
     
     while (!glfwWindowShouldClose(window))
     {
