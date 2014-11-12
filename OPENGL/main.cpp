@@ -58,11 +58,30 @@ int main(int argc, const char * argv[])
     
     glClearColor(0.0, 1.0, 0.0, 0.0);
     
-    GLint vertexShader = ShaderUtils::createShaderFromFile("myShaderProgram.vs", GL_VERTEX_SHADER);
-    GLint fragmentShader = ShaderUtils::createShaderFromFile("myShaderProgram.fs", GL_FRAGMENT_SHADER);
+    GLuint vertexShader = ShaderUtils::createShaderFromFile("myShaderProgram.vs", GL_VERTEX_SHADER);
+    GLuint fragmentShader = ShaderUtils::createShaderFromFile("myShaderProgram.fs", GL_FRAGMENT_SHADER);
     
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
+    GLuint shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vertexShader);
+    glAttachShader(shaderProgram, fragmentShader);
+    
+    glLinkProgram(shaderProgram);
+    GLint linkStatus;
+    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &linkStatus);
+    if(linkStatus != GL_TRUE)
+    {
+        std::cout << "Program Link Failed!" << std::endl;
+        GLint infoLogLength;
+        glGetProgramiv(shaderProgram, GL_INFO_LOG_LENGTH, &infoLogLength);
+        GLchar* infoLog = new GLchar[infoLogLength + 1];
+        glGetProgramInfoLog(shaderProgram, infoLogLength, NULL, infoLog);
+        std::cout << infoLog << std::endl;
+        delete infoLog;
+        
+        return 0;
+    }
+    
+    glUseProgram(shaderProgram);
     
     while (!glfwWindowShouldClose(window))
     {
@@ -76,6 +95,9 @@ int main(int argc, const char * argv[])
     }
     
     glDeleteBuffers(1,&myVBO);
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
+    glDeleteProgram(shaderProgram);
     
     glfwDestroyWindow(window);
     glfwTerminate();
