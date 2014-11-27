@@ -9,12 +9,16 @@
 //
 // Macintosh HD ▸ Users ▸ BagginsHomeFolder ▸ Documents ▸ Abstract Desktop ▸ Xcode Pro Folder ▸ OPENGL
 //
+// Next Tut: https://www.youtube.com/watch?v=K-2bpL_06Vk&index=12&list=UUgmBi6eG4I1mykk-Qb1HuXQ
+//
 
 #define GLFW_INCLUDE_GLCOREARB
 #include <iostream>
 #include </opt/local/include/GLFW/glfw3.h>
+//#include <IL/il.h>
 #include </opt/local/include/glm/glm.hpp>
 #include "ShaderUtils.h"
+#include <cmath>
 
 int main(int argc, const char * argv[])
 {
@@ -77,13 +81,26 @@ int main(int argc, const char * argv[])
     
     GLfloat bufferData[] =
     {
-        +0.0, +0.5,
-        -0.5, -0.5,
-        +0.5, -0.5,
+        .5,.5,
+        -.5,.5,
+        -.5,-.5,
+        .5,-.5
     };
     
     glBufferData(GL_ARRAY_BUFFER, sizeof(bufferData), bufferData, GL_STATIC_DRAW);
     glBindBuffer(GL_ARRAY_BUFFER, NULL);
+    
+    GLuint myEBO;
+    glGenBuffers(1,&myEBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, myEBO);
+    
+    GLushort indexData[] =
+    {
+        0,1,2,
+        0,2,3,
+    };
+    
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER,sizeof(indexData),indexData,GL_STATIC_DRAW);
     
     GLuint myVAO;
     glGenVertexArrays(1, &myVAO);
@@ -97,21 +114,29 @@ int main(int argc, const char * argv[])
     glBindBuffer(GL_ARRAY_BUFFER, NULL);
     glBindVertexArray(NULL);
     
+    GLint colorLoc = glGetUniformLocation(shaderProgram, "color");
+    
     while (!glfwWindowShouldClose(window))
     {
-        GLint windowWidth, windowHeight;
-        glfwGetWindowSize(window, &windowWidth, &windowHeight);
-        glViewport(0,0,windowWidth,windowHeight);
+        GLint viewportWidth, viewportHeight;
+        glfwGetFramebufferSize(window, &viewportWidth, &viewportHeight);
+        glViewport(0,0,viewportWidth,viewportHeight);
         glClear(GL_COLOR_BUFFER_BIT);
         
+        //glUniform4f(colorLoc, 1.0,sinf(glfwGetTime()),0.0,0.0);
+        glUniform4f(colorLoc, 1,1,1,1);
+        
         glBindVertexArray(myVAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,myEBO);
+        glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_SHORT,NULL);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,NULL);
         glBindVertexArray(NULL);
         
         glfwPollEvents();
         glfwSwapBuffers(window);
     }
     
+    glDeleteBuffers(1,&myEBO);
     glDeleteBuffers(1,&myVBO);
     glDeleteVertexArrays(1, &myVAO);
     glDeleteShader(vertexShader);
