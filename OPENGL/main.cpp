@@ -22,6 +22,9 @@
 
 int main(int argc, const char * argv[])
 {
+    
+    // This is a comment.
+    
     GLint glfwStatus = glfwInit();
     if (glfwStatus != GL_TRUE)
     {
@@ -46,7 +49,7 @@ int main(int argc, const char * argv[])
     glfwMakeContextCurrent(window);
     std::cout << glGetString(GL_VERSION) << std::endl;
     
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClearColor(.5, .5, .5, 1);
     
     GLuint vertexShader = ShaderUtils::createShaderFromFile("myShaderProgram.vs", GL_VERTEX_SHADER);
     GLuint fragmentShader = ShaderUtils::createShaderFromFile("myShaderProgram.fs", GL_FRAGMENT_SHADER);
@@ -124,7 +127,7 @@ int main(int argc, const char * argv[])
         glClear(GL_COLOR_BUFFER_BIT);
         
         //glUniform4f(colorLoc, 1.0,sinf(glfwGetTime()),0.0,0.0);
-        glUniform4f(colorLoc, 1,1,1,1);
+        glUniform4f(colorLoc, 1,.5,1,1);
         
         glBindVertexArray(myVAO);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,myEBO);
