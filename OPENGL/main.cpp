@@ -23,8 +23,6 @@
 int main(int argc, const char * argv[])
 {
     
-    // This is a comment.
-    
     GLint glfwStatus = glfwInit();
     if (glfwStatus != GL_TRUE)
     {
@@ -84,10 +82,16 @@ int main(int argc, const char * argv[])
     
     GLfloat bufferData[] =
     {
-        .5,.5,
-        -.5,.5,
-        -.5,-.5,
-        .5,-.5
+//        .05,.05,
+//        -.05,.05,
+//        -.05,-.05,
+//        .05,-.05
+        -0.5, +0.1,
+        -0.6, -0.1,
+        -0.4, -0.1,
+        +0.0, +0.1,
+        -0.1, -0.1,
+        +0.1, -0.3,
     };
     
     glBufferData(GL_ARRAY_BUFFER, sizeof(bufferData), bufferData, GL_STATIC_DRAW);
@@ -100,7 +104,8 @@ int main(int argc, const char * argv[])
     GLushort indexData[] =
     {
         0,1,2,
-        0,2,3,
+        3,4,5
+        //0,2,3,
     };
     
     glBufferData(GL_ELEMENT_ARRAY_BUFFER,sizeof(indexData),indexData,GL_STATIC_DRAW);
@@ -126,8 +131,8 @@ int main(int argc, const char * argv[])
         glViewport(0,0,viewportWidth,viewportHeight);
         glClear(GL_COLOR_BUFFER_BIT);
         
-        //glUniform4f(colorLoc, 1.0,sinf(glfwGetTime()),0.0,0.0);
-        glUniform4f(colorLoc, 1,.5,1,1);
+        glUniform4f(colorLoc, 1.0,sinf(glfwGetTime()),0.0,0.0);
+        //glUniform4f(colorLoc, 1.0,0.0,0.0,1);
         
         glBindVertexArray(myVAO);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,myEBO);
