@@ -1,3 +1,5 @@
+
+
 //
 //  main.cpp
 //  OPENGL
@@ -82,16 +84,10 @@ int main(int argc, const char * argv[])
     
     GLfloat bufferData[] =
     {
-//        .05,.05,
-//        -.05,.05,
-//        -.05,-.05,
-//        .05,-.05
-        -0.5, +0.1,
-        -0.6, -0.1,
-        -0.4, -0.1,
-        +0.0, +0.1,
-        -0.1, -0.1,
-        +0.1, -0.3,
+ +          .05,.05,
+        -.05,.05,
+        -.05,-.05,
+        .05,-.05
     };
     
     glBufferData(GL_ARRAY_BUFFER, sizeof(bufferData), bufferData, GL_STATIC_DRAW);
@@ -104,8 +100,7 @@ int main(int argc, const char * argv[])
     GLushort indexData[] =
     {
         0,1,2,
-        3,4,5
-        //0,2,3,
+        0,2,3,
     };
     
     glBufferData(GL_ELEMENT_ARRAY_BUFFER,sizeof(indexData),indexData,GL_STATIC_DRAW);
@@ -155,3 +150,7 @@ int main(int argc, const char * argv[])
     glfwTerminate();
     return 0;
 }
+
+
+
+
